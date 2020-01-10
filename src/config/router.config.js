@@ -36,7 +36,7 @@ export const asyncRouterMap = [
         redirect: '/monitor/monitorManage',
         component: PageView,
         meta: {
-          title: '监控墙',
+          title: '首页',
           keepAlive: true,
           icon: iconMonitor,
         },
@@ -45,16 +45,7 @@ export const asyncRouterMap = [
             name: 'monitorManage',
             component: () => import('@/views/monitor/MonitorManage'),
             meta: {
-              title: '机器看板',
-              keepAlive: false,
-            }
-          },
-          {
-            path: '/monitor/incident',
-            name: 'incidentManage',
-            component: () => import('@/views/monitor/IncidentManage'),
-            meta: {
-              title: '事件看板',
+              title: '首页',
               keepAlive: false,
             }
           },
@@ -67,7 +58,7 @@ export const asyncRouterMap = [
         redirect: '/schedule/scheduleManage',
         component: PageView,
         meta: {
-          title: '值排班',
+          title: '资源管理',
           keepAlive: true,
           icon: iconScheduling,
         },
@@ -76,38 +67,19 @@ export const asyncRouterMap = [
             name: 'scheduleManage',
             component: () => import('@/views/schedule/ScheduleManage'),
             meta: {
-              title: '值排班',
-              keepAlive: false,
-            }
-          }, {
-            path: '/schedule/rankManage',
-            name: 'rankManage',
-            component: () => import('@/views/schedule/RankManage'),
-            meta: {
-              title: '班次管理',
+              title: '资源管理',
               keepAlive: false,
             }
           },
           {
-            path: '/schedule/personManage',
-            name: 'personManage',
-            hidden: true,
-            component: () => import('@/views/schedule/personManage'),
-            meta: {
-              title: '值排班人员',
-              keepAlive: false,
-            }
-          },
-          {
-            path: '/schedule/person',
-            name: 'person',
-            hidden: true,
-            component: () => import('@/views/schedule/person'),
-            meta: {
-              title: '值班员',
-              keepAlive: false,
-            }
+          path: '/schedule/scheduleManage',
+          name: 'scheduleManage',
+          component: () => import('@/views/schedule/ScheduleManage'),
+          meta: {
+            title: '资源分类',
+            keepAlive: false,
           }
+        }
         ]
       },
       // 打印机管理Printer
@@ -117,7 +89,7 @@ export const asyncRouterMap = [
         redirect: '/printer/PrinterManage',
         component: PageView,
         meta: {
-          title: '打印机管理',
+          title: '会员管理',
           keepAlive: true,
           icon: iconPrinter,
         },
@@ -126,202 +98,28 @@ export const asyncRouterMap = [
           name: 'PrinterManage',
           component: () => import('@/views/printer/PrinterManage'),
           meta: {
-            title: '打印机列表',
+            title: '会员列表',
             keepAlive: false,
-          }
-        }, {
-          path: '/printer/detail',
-          name: 'printerDetail',
-          hidden: true,
-          component: () => import('@/views/printer/printerDetail'),
-          meta: {
-            title: '打印机详情',
-            keepAlive: true,
-            //   permission: ['dashboard']
           }
         }]
       },
-      // 物料管理
+      // 部门管理
       {
-        path: '/filament',
-        name: 'filament',
-        redirect: '/filament/list',
+        path: '/depart',
+        name: 'depart',
+        redirect: '/depart/list',
         component: PageView,
         meta: {
-          title: '物料管理',
+          title: '部门管理',
           keepAlive: true,
-          icon: iconFilament,
-          permission: ['filament']
+          icon: iconFilament
         },
         children: [{
-            path: '/filament/list',
-            name: 'filamentList',
-            component: () => import('@/views/filament/filamentList'),
+            path: '/depart/list',
+            name: 'departList',
+            component: () => import('@/views/depart/departList'),
             meta: {
-              title: '物料列表',
-              keepAlive: true,
-              //   permission: ['dashboard']
-            }
-          },
-          {
-            path: '/filament/detail',
-            name: 'filamentDetail',
-            hidden: true,
-            component: () => import('@/views/filament/filamentDetail'),
-            meta: {
-              title: '物料详情',
-              keepAlive: true,
-              //   permission: ['dashboard']
-            }
-          }
-        ]
-      },
-      // 文件管理
-      {
-        path: '/file',
-        name: 'file',
-        redirect: '/file/myFile',
-        component: PageView,
-        meta: {
-          title: '文件管理',
-          keepAlive: true,
-          icon: iconFile,
-          permission: ['file']
-        },
-        children: [{
-            path: '/file/myFile',
-            name: 'myFile',
-            component: () => import('@/views/files/MyFile'),
-            meta: {
-              title: '我的文件',
-              keepAlive: false,
-              permission: ['myFile']
-            }
-          },
-          {
-            path: '/file/publicFile',
-            name: 'publicFile',
-            meta: {
-              title: '公海文件',
-              keepAlive: true
-            },
-            component: () => import('@/views/files/PublicFile')
-          },
-          {
-            path: '/file/sliceFile',
-            name: 'sliceFile',
-            component: () => import('@/views/files/SliceFile'),
-            meta: {
-              title: '我的切片模版',
-              keepAlive: true
-            }
-          },
-          {
-            path: '/file/productFile',
-            name: 'productFile',
-            component: () => import('@/views/files/ProductFile'),
-            meta: {
-              title: '生产项目',
-              keepAlive: true
-            }
-          },
-          {
-            path: '/file/approvalList',
-            name: 'approvalList',
-            hidden: true,
-            component: () => import('@/views/files/ApprovalList'),
-            meta: {
-              title: '审批列表',
-              keepAlive: true,
-              permission: ['dashboard']
-            }
-          },
-          {
-            path: '/file/folders',
-            name: 'folders',
-            hidden: true,
-            component: () => import('@/views/files/Folders'),
-            meta: {
-              title: '文件夹列表',
-              keepAlive: true,
-              permission: ['dashboard']
-            }
-          }
-        ]
-      },
-
-      // 订单管理
-      {
-        path: '/order',
-        name: 'order',
-        redirect: '/file/myFile',
-        component: PageView,
-        meta: {
-          title: '订单管理',
-          keepAlive: true,
-          icon: iconOrder,
-          permission: ['order']
-        },
-        children: [{
-            path: '/order/list',
-            name: 'orderList',
-            component: () => import('@/views/order/orderList'),
-            meta: {
-              title: '订单列表',
-              keepAlive: true,
-              //   permission: ['dashboard']
-            }
-          },
-          {
-            path: '/order/detail',
-            name: 'orderDetail',
-            hidden: true,
-            component: () => import('@/views/order/orderDetail'),
-            meta: {
-              title: '订单详情',
-              keepAlive: true,
-              //   permission: ['dashboard']
-            },
-          },
-          {
-            path: '/order/deliver',
-            name: 'deliverList',
-            hidden: true,
-            component: () => import('@/views/order/deliver/deliverList'),
-            meta: {
-              title: '交付单',
-              keepAlive: true,
-              //   permission: ['dashboard']
-            }
-          },
-          {
-            path: '/order/arrange',
-            name: 'arrange',
-            hidden: true,
-            component: () => import('@/views/order/arrange/arrange'),
-            meta: {
-              title: '托盘排产',
-              keepAlive: true,
-              //   permission: ['dashboard']
-            }
-          },
-          {
-            path: '/order/ganttChart',
-            name: 'ganttChart',
-            component: () => import('@/views/order/gantt/ganttChart'),
-            meta: {
-              title: '甘特图',
-              keepAlive: true,
-              //   permission: ['dashboard']
-            }
-          },
-          {
-            path: '/order/ganttList',
-            name: 'ganttList',
-            hidden: true,
-            component: () => import('@/views/order/gantt/ganttList'),
-            meta: {
-              title: '甘特图',
+              title: '部门列表',
               keepAlive: true,
               //   permission: ['dashboard']
             }

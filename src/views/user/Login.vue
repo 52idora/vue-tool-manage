@@ -19,10 +19,10 @@
               size="large"
               type="text"
               :maxLength="100"
-              placeholder="账户: test@163.com"
+              placeholder="邮箱"
               v-decorator="[
                 'email',
-                {rules: [{ required: true, message: '请输入帐户名或邮箱地址' }, { validator: handleemailOrEmail }], validateTrigger: 'change'}
+                {rules: [{ required: true, message: '请输入邮箱地址' }, { validator: handleemailOrEmail }], validateTrigger: 'change'}
               ]"
             >
               <a-icon slot="prefix" type="user" :style="{ color: '#fff' }"/>
@@ -35,7 +35,7 @@
               :maxLength="100"
               type="password"
               autocomplete="false"
-              placeholder="密码:123456a"
+              placeholder="密码"
               v-decorator="[
                 'password',
                 {rules: [{ required: true, message: '请输入密码' }], validateTrigger: 'blur'}
@@ -153,7 +153,7 @@ export default {
           const loginParams = { ...values }
           delete loginParams.email
           loginParams.email = values.email
-          loginParams.password = values.password
+          loginParams.pass = values.password
           Login(loginParams)
             .then((res) => this.loginSuccess(res))
             .catch(err => this.requestFailed(err))
@@ -212,25 +212,7 @@ export default {
     },
     loginSuccess (res) {
       console.log(res)
-      // check res.homePage define, set $router.push name res.homePage
-      // Why not enter onComplete
-      /*
-      this.$router.push({ name: 'analysis' }, () => {
-        console.log('onComplete')
-        this.$notification.success({
-          message: '欢迎',
-          description: `${timeFix()}，欢迎回来`
-        })
-      })
-      */
       this.$router.push({ path: '/printer' })
-      // 延迟 1 秒显示欢迎信息
-      // setTimeout(() => {
-      //   this.$notification.success({
-      //     message: '欢迎',
-      //     description: `${timeFix()}，欢迎回来`
-      //   })
-      // }, 1000)
       this.isLoginError = false
     },
     requestFailed (err) {

@@ -5,7 +5,7 @@
         <div class="header">
           <a href="/">
             <!-- <img src="~@/assets/logo.svg" class="logo" alt="logo"> -->
-            <span class="title">工厂系统</span>
+            <span class="title">资源管理系统</span>
           </a>
         </div>
       </div>
