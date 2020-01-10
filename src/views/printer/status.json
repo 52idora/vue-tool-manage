@@ -1,0 +1,53 @@
+{
+  "statusList": [{
+      "name": "idle",
+      "status": "rgb(64, 130, 193)",
+      "text": "空闲"
+    },
+    {
+      "name": "busy",
+      "status": "#926dde",
+      "text": "忙"
+    },
+    {
+      "name": "running",
+      "status": "rgb(237, 175, 103)",
+      "text": "打印中"
+    },
+    {
+      "name": "completed",
+      "status": "rgb(84, 176, 149)",
+      "text": "打印完成"
+    },
+    {
+      "name": "error",
+      "status": "rgb(221, 94, 88)",
+      "text": "错误"
+    },
+    {
+      "name": "paused",
+      "status": "rgb(221, 94, 88)",
+      "text": "暂停"
+    },
+    {
+      "name": "offline",
+      "status": "rgb(115, 115, 115)",
+      "text": "离线"
+    },
+    {
+      "name": "cutting",
+      "status": "rgb(221, 94, 88)",
+      "text": "断料"
+    },
+    {
+      "name": "downloading",
+      "status": "#926dde",
+      "text": "下载文件中"
+    },
+    {
+      "name": "starving",
+      "status": "rgb(221, 94, 88)",
+      "text": "缺料"
+    }
+  ]
+}

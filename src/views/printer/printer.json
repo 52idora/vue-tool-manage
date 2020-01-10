@@ -1,0 +1,79 @@
+[
+    {
+      "name": "machineNum",
+      "label": "打印机编号",
+      "value": "打印机编号",
+      "checked": true,
+      "disabled": true
+    },
+    {
+      "name": "machineState",
+      "label": "打印机状态",
+      "value": "打印机状态",
+      "checked": true,
+      "disabled": true
+    },
+    {
+      "name": "regionName",
+      "label": "产区名称",
+      "value": "产区名称",
+      "checked": true,
+      "disabled": true
+    },
+    {
+      "name": "machineName",
+      "label": "打印机名称",
+      "value": "打印机名称",
+      "checked": false,
+      "disabled": false
+    },
+    {
+      "name": "machineType",
+      "label": "打印机类型",
+      "value": "打印机类型",
+      "checked": false,
+      "disabled": false
+    },
+    {
+      "name": "nozzleSize",
+      "label": "喷嘴口径",
+      "value": "喷嘴口径",
+      "checked": false,
+      "disabled": false
+    },
+    {
+      "name": "filament",
+      "label": "耗材使用",
+      "value": "耗材使用",
+      "checked": false,
+      "disabled": false
+    },
+    {
+      "name": "fileName",
+      "label": "文件名称",
+      "value": "文件名称",
+      "checked": false,
+      "disabled": false
+    },
+    {
+      "name": "printProgress",
+      "label": "打印进度",
+      "value": "打印进度",
+      "checked": false,
+      "disabled": false
+    },
+    {
+      "name": "nozzleNum",
+      "label": "喷嘴个数",
+      "value": "喷嘴个数",
+      "checked": false,
+      "disabled": false
+    },
+    {
+      "name": "trayName",
+      "label": "托盘名称",
+      "value": "托盘名称",
+      "checked": false,
+      "disabled": false
+    }
+  ]
