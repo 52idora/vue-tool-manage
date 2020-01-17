@@ -39,7 +39,6 @@
 
 <script>
 import NoticeIcon from '@/components/NoticeIcon'
-import { getApprovalList } from '@/api/file'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {

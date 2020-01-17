@@ -40,13 +40,10 @@
 
       <span slot="action" slot-scope="text, record">
         <template>
-          <router-link :to="{ name: 'filamentDetail',query:{id:record.filamentId} }">
-            <a>详情</a>
-          </router-link>
-
+          <a @click="$refs.thingNew.add(record)">修改</a>
           <a-divider type="vertical" />
           <a-popconfirm
-            title="你确定要删除这个材料吗？"
+            title="你确定要删除这个物品吗？"
             @confirm="confirmDelete(record)"
             okText="确认"
             cancelText="取消"
@@ -61,7 +58,6 @@
 </template>
 
 <script>
-  import moment from 'moment'
   import { STable, Ellipsis } from '@/components'
   import { thingPage,thingDel} from '@/api/thing'
   import thingNew from "./thingNew";
@@ -90,6 +86,7 @@
       scopedSlots: { customRender: 'action' }
     }
   ]
+
   export default {
     name: 'departList',
     components: {
@@ -107,12 +104,11 @@
         columns,
         selectedRowKeys: [],
         selectedRows: [],
-        form: this.$form.createForm(this, { filamentType: 'filamentName', keyword: null }),
+        form: this.$form.createForm(this, {keyword: null }),
         // 加载数据方法 必须为 Promise 对象
         loadData: parameter => {
-          let queryParam = { orderType: 1 }
-          queryParam[this.queryParam.filamentType] = this.queryParam.keyword
-          return thingPage(Object.assign(parameter, queryParam)).then(res => {
+          parameter.keyword = this.queryParam.keyword
+          return thingPage(parameter).then(res => {
             this.selectedRowKeys = []
             this.selectedRows = []
             return res

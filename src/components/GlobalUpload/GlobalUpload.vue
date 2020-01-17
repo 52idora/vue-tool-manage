@@ -36,7 +36,6 @@
 
 <script>
 import UserMenu from '../tools/UserMenu'
-import bus from '@/views/files/bus'
 import SMenu from '../Menu/'
 import Logo from '../tools/Logo'
 import { mixin } from '@/utils/mixin'
@@ -66,9 +65,9 @@ export default {
     }
   },
   created() {
-    bus.$on('uploadFile', value => {
+    /*bus.$on('uploadFile', value => {
       this.add(value)
-    })
+    })*/
   },
   methods: {
     add(files) {
