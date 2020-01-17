@@ -41,14 +41,32 @@ export const asyncRouterMap = [
           icon: iconMonitor,
         },
         children: [{
-            path: '/monitor/monitorManage',
-            name: 'monitorManage',
-            component: () => import('@/views/monitor/MonitorManage'),
+          path: '/monitor/monitorManage',
+          name: 'monitorManage',
+          component: () => import('@/views/monitor/MonitorManage'),
+          meta: {
+            title: '首页',
+            keepAlive: false,
+          }
+          },
+          {
+            path: '/thing/borrow',
+            name: 'borrowManage',
+            component: () => import('@/views/thing/borrow'),
             meta: {
-              title: '首页',
+              title: '物品借出',
               keepAlive: false,
             }
           },
+          {
+          path: '/thing/sendback',
+          name: 'backManage',
+          component: () => import('@/views/thing/sendback'),
+          meta: {
+            title: '归还管理',
+            keepAlive: false,
+          }
+        }
         ]
       },
       // 值排班Monitor
@@ -63,18 +81,18 @@ export const asyncRouterMap = [
           icon: iconScheduling,
         },
         children: [{
-            path: '/schedule/scheduleManage',
-            name: 'scheduleManage',
-            component: () => import('@/views/schedule/ScheduleManage'),
+            path: '/thing/thingList',
+            name: 'thingManage',
+            component: () => import('@/views/thing/thingList'),
             meta: {
               title: '资源管理',
               keepAlive: false,
             }
           },
           {
-          path: '/schedule/scheduleManage',
-          name: 'scheduleManage',
-          component: () => import('@/views/schedule/ScheduleManage'),
+          path: '/type/typeList',
+          name: 'typeManage',
+          component: () => import('@/views/type/typeList'),
           meta: {
             title: '资源分类',
             keepAlive: false,
@@ -82,11 +100,11 @@ export const asyncRouterMap = [
         }
         ]
       },
-      // 打印机管理Printer
+      // 会员管理
       {
-        path: '/printer',
-        name: 'printer',
-        redirect: '/printer/PrinterManage',
+        path: '/users',
+        name: 'users',
+        redirect: '/users/usersList',
         component: PageView,
         meta: {
           title: '会员管理',
@@ -94,9 +112,9 @@ export const asyncRouterMap = [
           icon: iconPrinter,
         },
         children: [{
-          path: '/printer/PrinterManage',
-          name: 'PrinterManage',
-          component: () => import('@/views/printer/PrinterManage'),
+          path: '/users/usersList',
+          name: 'UsersManage',
+          component: () => import('@/views/users/usersList'),
           meta: {
             title: '会员列表',
             keepAlive: false,

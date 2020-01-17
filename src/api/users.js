@@ -3,13 +3,14 @@ import {
 } from '@/utils/request'
 
 const api = {
-  add: '/depart/add',
-  edit: '/depart/edit',
-  del: '/depart/del',
-  page: '/depart/page'
+  add: '/users/add',
+  edit: '/users/edit',
+  del: '/users/del',
+  page: '/users/page',
+  listByDepart: '/users/listByDepart',
 }
 
-export function departAdd(parameter) {
+export function usersAdd(parameter) {
   return axios({
     url: api.add,
     method: 'post',
@@ -17,7 +18,7 @@ export function departAdd(parameter) {
   })
 }
 
-export function departEdit(parameter) {
+export function usersEdit(parameter) {
   return axios({
     url: api.edit,
     method: 'post',
@@ -25,7 +26,7 @@ export function departEdit(parameter) {
   })
 }
 
-export function departDel(parameter) {
+export function usersDel(parameter) {
   return axios({
     url: api.del,
     method: 'post',
@@ -33,17 +34,17 @@ export function departDel(parameter) {
   })
 }
 
-export function departPage(parameter) {
+export function usersPage(parameter) {
   return axios({
-    url: "/depart/page",
+    url: api.page,
     method: 'post',
     data: parameter
   })
 }
 
-export function departAll(parameter) {
+export function usersByDepart(parameter) {
   return axios({
-    url: "/depart/all",
+    url: api.listByDepart,
     method: 'post',
     data: parameter
   })

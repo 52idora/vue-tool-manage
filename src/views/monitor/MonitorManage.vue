@@ -3,28 +3,24 @@
     <div class="top">
       <a-row>
         <a-col :span="12" class="b-r-1">
-          <div class="m-b-10">日计划</div>
-          <span>{{printerData.practiceTotal}}</span>&nbsp;/&nbsp;
-          <span>{{printerData.planningTotal}}</span>&nbsp;盘
+          <div class="m-b-10">物品总数</div>
+          <span>{{stastics.thing_count}}</span>&nbsp;件
           <div class="m-t-10">
-            <span>{{printerData.startTime}}</span>&nbsp;~&nbsp;
-            <span>{{printerData.endTime}}</span>
+
           </div>
         </a-col>
         <a-col :span="12">
-          <div class="m-b-10">验收情况</div>
-          <span>{{printerData.acceptanceTotal2}}</span>&nbsp;/&nbsp;
-          <span>{{printerData.acceptanceTotal}}</span>&nbsp;套
+          <div class="m-b-10">会员总数</div>
+          <span>{{stastics.user_count}}</span>&nbsp;人
           <div class="m-t-10">
-            <span>{{printerData.startTime}}</span>&nbsp;~&nbsp;
-            <span>{{printerData.endTime}}</span>
+
           </div>
         </a-col>
       </a-row>
     </div>
     <div class="machine">
       <a-row :gutter="24">
-        <a-col v-for="(item, index) in printerData.machines" :key="index" :span="currentColumn">
+        <!--<a-col v-for="(item, index) in printerData.machines" :key="index" :span="currentColumn">
           <div class="machine-list" :class="item.machineState">
             <div class="m-b-10 machine-num">
               <span>机器编号:</span>
@@ -39,46 +35,22 @@
               <span class="flex">{{item.machineState}}</span>
             </div>
           </div>
-        </a-col>
+        </a-col>-->
       </a-row>
     </div>
   </div>
 </template>
 
 <script>
-import moment from 'moment'
-import { STable, Ellipsis } from '@/components'
-
-const statusMap = {
-  0: {
-    status: 'default',
-    text: '关闭'
-  },
-  1: {
-    status: 'processing',
-    text: '运行中'
-  },
-  2: {
-    status: 'success',
-    text: '已上线'
-  },
-  3: {
-    status: 'error',
-    text: '异常'
-  }
-}
+import { stastic } from '@/api/thing'
 
 export default {
   name: 'monitorManage',
   components: {
-    STable,
-    Ellipsis
   },
   data() {
     return {
-      printerData: {},
-      machines: [],
-      currentColumn: 8 //打印机几列显示
+      stastics:{'thing_count':0 ,'user_count':0}
     }
   },
   filters: {
@@ -90,22 +62,13 @@ export default {
     }
   },
   created() {
-    this.printerList()
+    this.getStastic()
   },
   methods: {
-    printerList() {
-      this.$http.post('/machine/machineBoard', { param: {} }).then(res => {
-        if (res.state == 1) {
-          this.printerData = res.data;
-          console.log(res)
-          this.machines = this.printerData.machines;
-          if (this.machines.length > 16) {
-            this.currentColumn = 4
-          } else if (this.machines.length > 64) {
-            this.currentColumn = 6
-          } else {
-            this.currentColumn = 8
-          }
+    getStastic() {
+      stastic().then((res)=>{
+        if(res.state == 1){
+          this.stastics = res.data
         }
       })
     }

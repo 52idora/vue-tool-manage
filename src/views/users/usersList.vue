@@ -5,7 +5,7 @@
         <a-row :gutter="48">
           <a-col :md="8" :xl="9" :sm="24" style="padding-right:0;">
             <span class="table-page-search-submitButtons">
-              <a-button type="primary" icon="plus" @click="$refs.departNew.add()">新建部门</a-button>
+              <a-button type="primary" icon="plus" @click="$refs.usersNew.add()">会员录入</a-button>
             </span>
           </a-col>
           <a-col :md="6" :xl="5" :sm="24">
@@ -56,28 +56,27 @@
         </template>
       </span>
     </s-table>
-    <depart-new ref="departNew" @ok="handleSearch" />
+    <users-new ref="usersNew" @ok="handleSearch" />
   </a-card>
 </template>
 
 <script>
   import moment from 'moment'
   import { STable, Ellipsis } from '@/components'
-  import { departPage, departDel } from '@/api/depart'
-  import { axios } from '@/utils/request'
-  import DepartNew from "./departNew";
+  import { usersPage,usersDel} from '@/api/users'
+  import usersNew from "./usersNew";
 
   const columns = [
     {
-      title: '部门名称',
-      dataIndex: 'depart_name',
-      scopedSlots: { customRender: 'departName' }
+      title: '昵称',
+      dataIndex: 'nick_name',
+      scopedSlots: { customRender: 'nickName' }
     },
     {
-      title: '总人数',
-      dataIndex: 'member_num',
+      title: '部门',
+      dataIndex: 'depart_name',
       // sorter: true,
-      scopedSlots: { customRender: 'memberNum' }
+      scopedSlots: { customRender: 'departName' }
     },
     {
       title: '操作',
@@ -86,9 +85,9 @@
     }
   ]
   export default {
-    name: 'departList',
+    name: 'userList',
     components: {
-      DepartNew,
+      usersNew,
       STable,
       Ellipsis
     },
@@ -105,9 +104,8 @@
         form: this.$form.createForm(this, { filamentType: 'filamentName', keyword: null }),
         // 加载数据方法 必须为 Promise 对象
         loadData: parameter => {
-          let queryParam = { orderType: 1 }
-          queryParam[this.queryParam.filamentType] = this.queryParam.keyword
-          return departPage(Object.assign(parameter, queryParam)).then(res => {
+          parameter.keyword = this.queryParam.keyword
+          return usersPage(parameter).then(res => {
             this.selectedRowKeys = []
             this.selectedRows = []
             return res
@@ -127,29 +125,12 @@
     methods: {
       //删除
       confirmDelete(record) {
-        departDel({"departId":record.id}).then(res => {
+        usersDel({'userId':record.id}).then(res => {
           if (res.state == 1) {
             this.$refs.table.refresh()
             this.$notification.success({ message: '成功' })
           }
         })
-      },
-      //批量删除
-      allDelete() {
-        if (this.selectedRows.length == 0) {
-          // this.$notification.info({message: '未选择任何材料！'})
-          this.$notification.info({ message: '未选择任何材料！' })
-        } else {
-          this.$confirm({
-            title: '你确定删除选中的材料吗？',
-            okText: '确认',
-            okType: 'danger',
-            cancelText: '取消',
-            onOk: () => {
-              this.confirmDelete()
-            }
-          })
-        }
       },
       onSelectChange(selectedRowKeys, selectedRows) {
         this.selectedRowKeys = selectedRowKeys

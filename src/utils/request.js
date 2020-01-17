@@ -15,12 +15,9 @@ const service = axios.create({
   timeout: 120000, // 请求超时时间
   headers: {
     'Content-Type': 'application/json'
-  },
-  transformRequest: [function (data) {
-    data = JSON.stringify(data)
-    return data
-  }]
+  }
 })
+service.defaults.headers.common['myauth'] = "Bearer "
 
 const err = (error) => {
   if (error.response) {
@@ -52,8 +49,7 @@ const err = (error) => {
 
 // request interceptor
 service.interceptors.request.use(config => {
-  const token = Vue.ls.get(ACCESS_TOKEN)
-  // const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NzcxNzI2NzIsInVzZXJJZCI6NjYxNDc1NjU4NjY2NzY0Mjg4MCwiZW1haWwiOiJ0ZXN0QDE2My5jb20ifQ.yk3c2S4h8h_q-AUPh9ps0_mTsDXiA-OveJHt24E3zJM";
+  const token = "Bearer "+Vue.ls.get(ACCESS_TOKEN)
   if (token) {
     config.headers['Authorization'] = token // 让每个请求携带自定义 token 请根据实际情况自行修改
   }

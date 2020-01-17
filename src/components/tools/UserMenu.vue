@@ -65,13 +65,13 @@ export default {
         size: 10,
         state: 0
       }
-      getApprovalList(params).then(res => {
+      /*getApprovalList(params).then(res => {
         if (res.state == 1) {
           // console.log(res)
           this.count = res.data.total
         } else {
         }
-      })
+      })*/
     },
     ...mapActions(['Logout']),
     handleLogout() {

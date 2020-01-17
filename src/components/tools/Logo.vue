@@ -19,7 +19,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: '工厂系统',
+      default: '资源系统',
       required: false
     },
     showTitle: {

@@ -82,7 +82,8 @@ import md5 from 'md5'
 import TwoStepCaptcha from '@/components/tools/TwoStepCaptcha'
 import { mapActions } from 'vuex'
 import { timeFix } from '@/utils/util'
-import { getSmsCaptcha, get2step } from '@/api/login'
+import { getSmsCaptcha, get2step,login } from '@/api/login'
+import { ACCESS_TOKEN } from '@/store/mutation-types'
 
 export default {
   components: {
@@ -154,7 +155,7 @@ export default {
           delete loginParams.email
           loginParams.email = values.email
           loginParams.pass = values.password
-          Login(loginParams)
+          login(loginParams)
             .then((res) => this.loginSuccess(res))
             .catch(err => this.requestFailed(err))
             .finally(() => {
@@ -212,12 +213,22 @@ export default {
     },
     loginSuccess (res) {
       console.log(res)
-      this.$router.push({ path: '/printer' })
-      this.isLoginError = false
+      if(res.code==1){
+        this.isLoginError = false
+        this.$ls.set(ACCESS_TOKEN,res.data.token)
+        this.$router.push({ path: '/printer' })
+      } else if(res.code==4){
+        this.isLoginError = true
+      } else{
+        this.$notification['error']({
+          message: '失败',
+          description: res.msg,
+          duration: 4
+        })
+      }
     },
     requestFailed (err) {
       console.log(err)
-      this.isLoginError = true
       this.$notification['error']({
         message: '失败',
         description: ((err.response || {}).data || {}).message || '请求出现错误，请稍后再试',
